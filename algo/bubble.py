@@ -4,7 +4,7 @@
 
 
 def sort(array):
-    for i in range(1, len(array) - 1):
+    for i in range(1, len(array)):
         swapped = False
         for j in range(len(array) - i):
             if array[j] > array[j + 1]:

@@ -2,7 +2,7 @@ from pathlib import Path
 from importlib.util import spec_from_file_location, module_from_spec
 
 
-def all():
+def enum():
     me = Path(__file__)
     folder = me.parent.parent / me.stem
     return {

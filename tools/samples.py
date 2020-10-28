@@ -8,7 +8,7 @@ def generate():
     """.rstrip().splitlines()
     result = [[int(z) for z in line.split()] for line in manual]
 
-    for i in range(2):
+    for i in range(12):
         size = 1 << i
         result.extend([
             [1] * size,

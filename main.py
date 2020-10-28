@@ -1,6 +1,6 @@
 # import matplotlib.pyplot as plt
 
-import algo.naive.qsort
+import algo.naive.quick
 
 # plt.plot([1,2,3])
 # plt.show()

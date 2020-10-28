@@ -1,5 +1,5 @@
 #
-# Unoptimized Merge sort
+# Non-optimized Merge sort
 #
 
 
@@ -15,16 +15,16 @@ def sort(array):
     j = 0
     p = 0
     while True:
-      if i >= len(lft):
-        array[p:] = rgt[j:]
-        break
-      if j >= len(rgt):
-        array[p:] = lft[i:]
-        break
-      if lft[i] < rgt[j]:
-        array[p] = lft[i]
-        i += 1
-      else:
-        array[p] = rgt[j]
-        j += 1
-      p += 1
+        if i >= len(lft):
+            array[p:] = rgt[j:]
+            break
+        if j >= len(rgt):
+            array[p:] = lft[i:]
+            break
+        if lft[i] < rgt[j]:
+            array[p] = lft[i]
+            i += 1
+        else:
+            array[p] = rgt[j]
+            j += 1
+        p += 1

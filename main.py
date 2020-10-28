@@ -1,11 +1,21 @@
-# import matplotlib.pyplot as plt
+import time
+import tools.algo
+import tools.samples
 
-import algo.naive.qsort
 
-# plt.plot([1,2,3])
-# plt.show()
+def run():
+    data = tools.samples.generate()
+    for name, module in tools.algo.enum().items():
+        print(name, end='\t')
+        start = time.time()
+        for array in data:
+            print('.', end='', flush=True)
+            a = array[:]
+            module.sort(a)
+            b = array[:]
+            b.sort()
+            assert a == b, f"Mismatch for {name} @{array}"
+        stop = time.time()
+        print('', stop - start)
 
-# a = input("Enter something: ")
-# print("You enter", a)
-
-a = [3, 14, 159, 2, 6, 5, 35]
+run()

@@ -1,3 +1,4 @@
+import time
 import tools.algo
 import tools.samples
 
@@ -6,6 +7,7 @@ def run():
     data = tools.samples.generate()
     for name, module in tools.algo.enum().items():
         print(name, end='\t')
+        start = time.time()
         for array in data:
             print('.', end='', flush=True)
             a = array[:]
@@ -13,6 +15,7 @@ def run():
             b = array[:]
             b.sort()
             assert a == b, f"Mismatch for {name} @{array}"
-        print()
+        stop = time.time()
+        print('', stop - start)
 
 run()

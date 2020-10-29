@@ -5,7 +5,8 @@ from importlib.util import spec_from_file_location, module_from_spec
 def enum():
     me = Path(__file__)
     folder = me.parent.parent / me.stem
-    return {
-        '.'.join(z.with_name(z.stem).relative_to(folder).parts):
-        spec_from_file_location(z.stem, z).loader.load_module()
-        for z in folder.glob('**/*.py')}
+    result = {}
+    for z in folder.glob('**/*.py'):
+      k = '.'.join(z.with_name(z.stem).relative_to(folder).parts)
+      result[k] = spec_from_file_location("sorts." + k, z).loader.load_module()
+    return result

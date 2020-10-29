@@ -1,0 +1,20 @@
+name: Test!
+
+on:
+  push:
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    -
+      uses: actions/checkout@v2
+    -
+      name: Python versions
+      run: |
+        python -V
+        python3 -V
+
+    - name: Run test
+      run:  python3 main.py

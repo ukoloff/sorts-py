@@ -7,9 +7,24 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    name: Test @${{ matrix.python-version }}
+    strategy:
+      matrix:
+        python-version:
+        - 3.9
+        - 3.8
+        - 3.7
+        - 3.6
+        - 3.5
+
     steps:
     -
       uses: actions/checkout@v2
+    -
+      name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
     -
       name: Python versions
       run: |
@@ -17,4 +32,4 @@ jobs:
         python3 -V
 
     - name: Run test
-      run:  python3 main.py
+      run:  python main.py

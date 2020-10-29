@@ -18,17 +18,14 @@ jobs:
 
     steps:
     -
-      uses: actions/checkout@v2
-    -
       name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     -
-      name: Python versions
-      run: |
-        python -V
-        python3 -V
-
-    - name: Run test
+      run: python -V
+    -
+      uses: actions/checkout@v2
+    -
+      name: Run test
       run:  python main.py

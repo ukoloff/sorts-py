@@ -6,19 +6,6 @@ def sort(array):
 
     three = [0] * 3
 
-    def partition(l, h, pivot):
-        while l <= h:
-            while array[l] < pivot:
-                l += 1
-            while array[h] > pivot:
-                h -= 1
-            if l >= h:
-                break
-            array[l], array[h] = array[h], array[l]
-            l += 1
-            h -= 1
-        return h
-
     def pivot(l, h):
         three[0] = array[l]
         three[1] = array[(l + h) // 2]
@@ -29,9 +16,20 @@ def sort(array):
     def sort(l, h):
         if l >= h:
             return
-        i = partition(l, h, pivot(l, h))
-        sort(l, i)
-        sort(i+1, h)
+        pivo = pivot(l, h)
+        lo, hi = l, h
+        while lo <= hi:
+            while array[lo] < pivo:
+                lo += 1
+            while array[hi] > pivo:
+                hi -= 1
+            if lo >= hi:
+                break
+            array[lo], array[hi] = array[hi], array[lo]
+            lo += 1
+            hi -= 1
+        sort(l, hi)
+        sort(hi+1, h)
 
     sort(0, len(array)-1)
 

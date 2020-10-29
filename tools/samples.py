@@ -15,9 +15,17 @@ def generate():
             [size + 1] * size,
             list(range(size)),
             list(range(size, 0, -1)),
-            *[[random.randrange(10 ** (z + 5)) for i in range(size)] for z in range(3)]
+            *triplicate([
+              [random.randrange(10 ** (base + 1)) for i in range(size)]
+              for base in range(6)])
         ])
-    for fn in [sorted, reversed]:
-        result.extend(list(map(lambda z: list(fn(z)), result)))
-    random.shuffle(result)
+    # random.shuffle(result)
     return result
+
+def triplicate(samples):
+  """
+  Add sorted versions of samples
+  """
+  asc = [sorted(z) for z in samples]
+  desc = [list(reversed(z)) for z in asc]
+  return samples + asc + desc

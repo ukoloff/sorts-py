@@ -10,6 +10,7 @@ def generate():
 
     for i in range(12):
         size = 1 << i
+        size = random.randint(size - size // 4, size + size // 4)
         result.extend([
             [1] * size,
             [size + 1] * size,

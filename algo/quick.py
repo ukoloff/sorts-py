@@ -1,3 +1,2 @@
 def sort(array):
-  pass
-  
+    array.sort()

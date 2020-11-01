@@ -1,5 +1,5 @@
 #
-# Non-optimized Merge sort
+# Merge sort
 #
 
 

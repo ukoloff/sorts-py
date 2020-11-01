@@ -1,5 +1,5 @@
 #
-# Non-optimized Heap sort
+# Heap sort
 #
 import heapq
 

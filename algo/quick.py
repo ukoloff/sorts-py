@@ -1,5 +1,5 @@
 #
-# Non-optimized Quick sort
+# Quick sort
 #
 
 

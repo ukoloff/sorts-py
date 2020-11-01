@@ -31,9 +31,9 @@ def sort(array):
             return
         i = partition(l, h, pivot(l, h))
         sort(l, i)
-        sort(i+1, h)
+        sort(i + 1, h)
 
-    sort(0, len(array)-1)
+    sort(0, len(array) - 1)
 
 
 def insort(array):

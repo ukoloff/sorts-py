@@ -20,7 +20,7 @@ def generate():
               [random.randrange(10 ** (base + 1)) for i in range(size)]
               for base in range(6)])
         ])
-    # random.shuffle(result)
+    random.shuffle(result)
     return result
 
 def triplicate(samples):

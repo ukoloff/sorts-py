@@ -3,25 +3,17 @@
 #
 
 def sort(array):
-    tmp = array[:]
     bit = 1
-
-    def empty():
-        mask = bit - 1
+    while True:
+        v0 = []
+        v1 = []
+        empty = True
+        mask = bit - 1 | bit
         for x in array:
             if x & mask != x:
-                return False
-        return True
-
-    while not empty():
-        pos0 = 0
-        pos1 = sum(1 for x in array if x & bit == 0)
-        for x in array:
-            if x & bit == 0:
-                tmp[pos0] = x
-                pos0 += 1
-            else:
-                tmp[pos1] = x
-                pos1 += 1
-        array[:] = tmp
+                empty = False
+            (v0 if x & bit == 0 else v1).append(x)
+        array[:] = v0 + v1
         bit += bit
+        if empty:
+            break

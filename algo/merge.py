@@ -2,31 +2,29 @@
 # Merge sort
 #
 
+
 def sort(array):
-
-    tmp = array[:]
-
-    stride = 1
-    while stride < len(array):
-        for i in range(0, len(array) - stride, 2 * stride):
-            eoB = min(len(array), i + 2 * stride)
-            eoA = i + stride
-            posA = i
-            posB = eoA
-            posT = i
-            while True:
-                if posA >= eoA:
-                    tmp[posT:eoB] = array[posB:eoB]
-                    break
-                if posB >= eoB:
-                    tmp[posT:eoB] = array[posA:eoA]
-                    break
-                if array[posA] > array[posB]:
-                    tmp[posT] = array[posB]
-                    posB += 1
-                else:
-                    tmp[posT] = array[posA]
-                    posA += 1
-                posT += 1
-            array[i:eoB] = tmp[i:eoB]
-        stride += stride
+    if len(array) < 2:
+        return
+    fence = len(array) // 2
+    lft = array[:fence]
+    sort(lft)
+    rgt = array[fence:]
+    sort(rgt)
+    i = 0
+    j = 0
+    p = 0
+    while True:
+        if i >= len(lft):
+            array[p:] = rgt[j:]
+            break
+        if j >= len(rgt):
+            array[p:] = lft[i:]
+            break
+        if lft[i] < rgt[j]:
+            array[p] = lft[i]
+            i += 1
+        else:
+            array[p] = rgt[j]
+            j += 1
+        p += 1

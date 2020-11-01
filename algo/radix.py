@@ -3,28 +3,17 @@
 #
 
 def sort(array, base=10):
-    pos = [0] * base
-    wrk = [[z, z, 0] for z in array]
-    dup = wrk[:]
+    wrk = [[z, z] for z in array]
     while True:
-        zero = True
-        for i in range(base):
-            pos[i] = 0
+        empty = True
+        fragments = [[] for i in range(base)]
         for z in wrk:
-            if z[1] != 0:
-                zero = False
-            z[2] = z[1] % base
-            pos[z[2]] += 1
+            fragments[z[1] % base].append(z)
             z[1] //= base
-        if zero:
+            if z[1] != 0:
+              empty = False
+        wrk[:] = sum(fragments, [])
+        if empty:
             break
-        ofs = 0
-        for i, v in enumerate(pos):
-            pos[i] = ofs
-            ofs += v
-        for z in wrk:
-            dup[pos[z[2]]] = z
-            pos[z[2]] += 1
-        wrk, dup = dup, wrk
     for i, z in enumerate(wrk):
         array[i] = z[0]

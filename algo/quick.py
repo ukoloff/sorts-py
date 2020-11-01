@@ -2,38 +2,25 @@
 # Quick sort
 #
 
+
 def sort(array):
+    if len(array) < 2:
+        return
+    x = pivot(array)
+    lt = []
+    eq = []
+    gt = []
+    for n in array:
+        (eq if n == x else lt if n < x else gt).append(n)
+    sort(lt)
+    sort(gt)
+    array[:] = lt + eq + gt
 
-    three = [0] * 3
 
-    def partition(l, h, pivot):
-        while l <= h:
-            while array[l] < pivot:
-                l += 1
-            while array[h] > pivot:
-                h -= 1
-            if l >= h:
-                break
-            array[l], array[h] = array[h], array[l]
-            l += 1
-            h -= 1
-        return h
-
-    def pivot(l, h):
-        three[0] = array[l]
-        three[1] = array[(l + h) // 2]
-        three[2] = array[h]
-        insort(three)
-        return three[1]
-
-    def sort(l, h):
-        if l >= h:
-            return
-        i = partition(l, h, pivot(l, h))
-        sort(l, i)
-        sort(i+1, h)
-
-    sort(0, len(array)-1)
+def pivot(array):
+    three = [array[0], array[len(array) // 2], array[-1]]
+    insort(three)
+    return three[1]
 
 
 def insort(array):

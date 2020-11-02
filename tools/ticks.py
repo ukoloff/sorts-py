@@ -11,7 +11,7 @@ def run():
       times = batch_times(fn)
       logs = Path(__file__).parent.parent / "log"
       logs.mkdir(parents=True, exist_ok=True)
-      with (logs / name + ".txt").open("w") as f:
+      with (logs / (name + ".txt")).open("w") as f:
         for k, v in times:
           print(k, v, file=f)
 

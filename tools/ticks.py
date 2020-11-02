@@ -12,7 +12,7 @@ def run():
       logs = Path(__file__).parent.parent / "log"
       logs.mkdir(parents=True, exist_ok=True)
       with (logs / (name + ".txt")).open("w") as f:
-        for k, v in times:
+        for k, v in times.items():
           print(k, v, file=f)
 
 def validate(fn, samples):

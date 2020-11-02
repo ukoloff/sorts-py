@@ -8,7 +8,7 @@ def generate():
     """.rstrip().splitlines()
     result = [[int(z) for z in line.split()] for line in manual]
 
-    for i in range(12):
+    for i in range(10):
         size = 1 << i
         size = random.randint(size - size // 4, size + size // 4)
         result.extend([
@@ -17,16 +17,29 @@ def generate():
             list(range(size)),
             list(range(size, 0, -1)),
             *triplicate([
-              [random.randrange(10 ** (base + 1)) for i in range(size)]
-              for base in range(6)])
+                [random.randrange(10 ** (base + 1)) for i in range(size)]
+                for base in range(6)])
         ])
     random.shuffle(result)
     return result
 
+
 def triplicate(samples):
-  """
-  Add sorted versions of samples
-  """
-  asc = [sorted(z) for z in samples]
-  desc = [list(reversed(z)) for z in asc]
-  return samples + asc + desc
+    """
+    Add sorted versions of samples
+    """
+    asc = [sorted(z) for z in samples]
+    desc = [list(reversed(z)) for z in asc]
+    return samples + asc + desc
+
+
+def of(size):
+    return [
+        [1] * size,
+        [size + 1] * size,
+        list(range(size)),
+        list(range(size, 0, -1)),
+        *triplicate([
+            [random.randrange(10 ** (base + 1)) for i in range(size)]
+            for base in range(6)])
+    ]

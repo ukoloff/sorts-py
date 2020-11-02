@@ -1,11 +1,19 @@
 import time
+from pathlib import Path
 from .algo import enum
 from .samples import of
 
 
 def run():
-    fns = enum()
-    print(batch_times(fns['std'].sort))
+    mods = enum()
+    for name, mod in mods.items():
+      fn = mod.sort
+      times = batch_times(fn)
+      logs = Path(__file__).parent.parent / "log"
+      logs.mkdir(parents=True, exist_ok=True)
+      with (logs / name + ".txt").open("w") as f:
+        for k, v in times:
+          print(k, v, file=f)
 
 def validate(fn, samples):
   for data in samples:

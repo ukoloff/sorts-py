@@ -1,7 +1,7 @@
 import time
+import random
 from pathlib import Path
 from .algo import enum
-from .samples import of
 
 
 def run():
@@ -14,6 +14,17 @@ def run():
       with (logs / (name + ".txt")).open("w") as f:
         for k, v in times.items():
           print(k, v, file=f)
+        print(times, file=f)
+
+def of(size):
+    return [
+        [1] * size,
+        list(range(size)),
+        list(range(size, 0, -1)),
+        *[
+            [random.randrange(10 ** (base + 1)) for i in range(size)]
+            for base in range(5)]
+    ]
 
 def validate(fn, samples):
   for data in samples:
@@ -24,12 +35,12 @@ def validate(fn, samples):
     assert(a == b)
 
 def single_time(fn, samples, cycles=10):
-  start = time.process_time()
+  start = time.perf_counter()
   for data in samples:
     for i in range(cycles):
       a = data[:]
       fn(a)
-  stop = time.process_time()
+  stop = time.perf_counter()
   return (stop - start) / cycles / len(samples)
 
 def batch_times(fn, max=60):
